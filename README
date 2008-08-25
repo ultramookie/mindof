@@ -1,0 +1,39 @@
+mindof
+written by and copyright steve "mookie" kong
+http://ultramookie.com/mindof-project/
+
+licensed under gplv3
+http://www.gnu.org/licenses/gpl-3.0.html
+
+mindof is a small, fast, and compact microblog applcation for your own use.
+
+SYSTEM REQUIREMENTS
+	php
+	mysql
+
+OPTIONAL
+	twitter username and password for twitter integration.
+	pownce application key, pownce username and pownce password.
+	pownce app key here:  http://pownce.com/api/apps/new/
+
+INSTALL INSTRUCTIONS
+	copy all files over to whereever you want to host your microblog.
+
+	from that location, move config-example.php to config.php.
+
+	edit config.php and enter the correct mysql database information.
+
+	point your webbrowser to http://<yoursiteurl>/<mindoflocation/install.php
+
+	fill out information.
+
+	enjoy.
+
+CREDITS
+	mindof uses icons from the gorgeous mini icon set from famfamfam which is
+	licensed under the Creative Commons Attribution 2.5 license.
+	http://www.famfamfam.com/lab/icons/mini/
+
+SUPPORT
+	mindof support group:
+	http://tech.groups.yahoo.com/group/mindofproject/

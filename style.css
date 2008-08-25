@@ -1,0 +1,69 @@
+body {
+	font-size: small;
+	font-family: "Verdana", Sans;
+	color:#000000;
+	background:#FFFFFF; 
+	margin-left: 200px;
+	width: 450px;
+}
+
+a {
+	color:#FC7901;
+	background:inherit;
+	text-decoration:none;
+}
+
+a:hover {
+	color:#FC7901;
+	background:#FFCC33;
+	text-decoration:none;
+}
+
+
+h2 { 
+	font-size: medium; 
+	background:#F0F0F0;
+}
+
+.title {
+	font-size: large; 
+	color:#FC7901;
+	background:#000000;
+	letter-spacing:5px;
+	word-spacing:1px
+}
+
+hr {
+	height: 1px;
+	color: #c0c0c0;
+}
+
+.entry {
+	font-size: medium;
+	background:#F0F0F0;
+}
+
+.timedate {
+	font-size: x-small;
+	background:#FFFFFF;
+	text-align: right;
+}
+
+.menu {
+	background:#BFBFBF;
+	color:#111111;
+	text-align:justify;
+}
+
+.footer {
+	text-align:right;
+}
+
+.box { 
+	border: 1px 
+	solid #cecece; 
+	padding: 4px 15px; 
+	margin: 1px;
+	text-align:right;
+}
+	

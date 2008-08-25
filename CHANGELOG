@@ -1,0 +1,191 @@
+mindof
+======
+
+version 0.6.4 (TBD)
+
+ENHANCEMENTS
+	+ icons added!  using famfamfam mini icons
+	  http://www.famfamfam.com/lab/icons/mini/
+
+version 0.6.3 (8/25/08)
+
+ENHANCEMENTS
+	+ prettification
+	+ cleaned up entry printing code
+	+ added code to do anchors for http/s links
+
+FIXES
+	+ fixed permalinks formatting to match frontpage
+
+version 0.6.2 (8/09/08)
+
+ENHANCEMENTS
+	+ added number of updates.
+	+ tweak ui.
+
+version 0.6.1 (5/29/08)
+
+ENHANCEMENTS
+	+ added source "mindof" for twitter updates.
+
+version 0.6 (5/23/08)
+
+UPGRADE INSTRUCTIONS
+	the database schema has changed:
+	point your webbrowser to http://<yoursiteurl>/<mindoflocation/updatedb.php
+
+ENHANCEMENTS
+	+ added pownce updates (turn on in 'site admin').
+	+ tweaked ui.
+
+version 0.5.3 (5/20/08)
+
+FIXES
+	+ fixed rss feed to not show a duplicate of the title in the description.
+	+ fixed twitter settings to pull twitter state and twitter email from
+	  database if they are set.
+	+ fixed security issue of not assigning the value of "update" back to
+	  itself after i do a mysql_real_escape_string()
+	+ removed extra arguments out of the addEntry() function -- old stuff
+	  left behind from having twitter settings stored in a conf file.
+
+version 0.5.2 (5/18/08)
+
+ugh. i forgot to update the install script with the new columns for twitter!
+if you upgraded from 0.5 to 0.5.1, you don't need this version.  this is just
+for people installing mindof fresh.
+
+FIXES
+	fixed install.php to create the "site" table correctly with the new
+	twitter columns.
+
+version 0.5.1 (5/18/08)
+
+sorry for the short release cycle (i did warn you to use at your own risk).
+i released 0.5 in haste and did not do the work to store the twitter stuff
+in mysql -- nor did i write up any of the front-end stuff to take care of
+getting your twitter stuff into the db.
+
+please see below for upgrading from 0.5 to 0.5.1 and taking advantage of the
+twitter settings enhancements.
+
+FIXES
+	fixed the twitter update code to only check for authentication
+	errors.  the last release would echo out the results of the 
+	twitter update if there were special characters (ahem "$") in
+	in the status update.
+
+ENHANCEMENTS
+	updated style sheets to make site more readable
+	+ made lines shorter
+	+ put silver background on entries
+	+ light up a:hovers
+
+	update twitter code to store twitter stuff in db
+	+ please use new config-example.php (or remove all twitter stuff
+	  from current one).
+	+ point browser to http://<yoursite>/updatedb.php
+	  this will add necessary columns for twitter stuff.
+	+ go to "site admin" and there will be a link to "twitter settings"
+	+ use the "twitter settings" to setup your twitter information for
+	  updating twitter along with your mindof.
+
+version 0.5 (5/18/08)
+
+FIXES
+	extra security for delete.php
+
+ENHANCEMENTS
+
+	twitter updating now available.
+	+ copy over the new config-example.php to config.php,
+	+ populate with information for your database.
+	+ set twitter_update to "1" (no quotes).
+	+ setup your twitter email and passwords.
+
+version 0.4 (5/16/2008)
+
+UPGRADE INSTRUCTIONS
+	the config.php file has changed.  please use the new config-example.php
+	as the base to reconfigure your system.  just copy over your settings.
+
+	run http://<yoursite>/updatedb.php to update your database to the
+	newest database schema.
+
+	use the "site admin" link to configure the number of main page entries
+	and number of rss entries displayed (plus to change the name of your
+	site and url of your site).
+	
+ENHANCEMENTS
+	changed settings so that they are web-based and not config file
+	based.  new "site admin" link added to header.
+FIXES
+	changed rss and iphone files to reflect the number of rss instead
+	of the (wrong) number of entries (for main page).
+
+version 0.3.1 (5/15/2008)
+
+FIXES
+	switched to strip_tags for entry and sitename.
+	stripslashes was killing apostrophes.
+
+version 0.3 (5/15/2008)
+
+FIXES
+	security fixes.  thank you alice (http://www.magical-girl.com/)
+	for the front-end engineering tips!
+
+version 0.2.2 (5/12/2008)
+
+FIXES
+	fixed dumb security error on my part for resetting
+	passwords.
+	removed display of email address from password
+	reset forms.
+
+version 0.2.1 (5/12/2008)
+
+FIXES
+	corrected version number in the config-example.php
+	file.
+
+NEW
+	tweaked styles.
+
+version 0.2 (5/11/2008)
+
+NEW FEATURES
+	forgot/change password functionality
+	archives pages
+	iphone functionality (a cheat, really just an rss feed)
+
+NEW IDEAS
+	search?  yahoo?
+
+TODO
+        lots and lots of stuff todo.
+        twitter api?
+        theming?
+        fix odd bugs (like the logout showing the login link)
+
+---
+
+version 0.1 (5/10/2008)
+
+FEATURES
+	rss feed (yay!)
+	delete
+	data entry
+
+INSTALL
+	1) move config-example.php to config.php
+	2) edit config.php
+	3) point webbrowser at http://PLACEOFINSTALL/install.php
+	4) fill in information
+	5) enjoy
+
+TODO
+	lots and lots of stuff todo.
+	twitter api?
+	theming?
+	fix odd bugs (like the logout showing the login link)
