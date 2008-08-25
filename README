@@ -17,7 +17,7 @@ OPTIONAL
 	pownce app key here:  http://pownce.com/api/apps/new/
 
 INSTALL INSTRUCTIONS
-	copy all files over to whereever you want to host your microblog.
+	copy all files over to wherever you want to host your microblog.
 
 	from that location, move config-example.php to config.php.
 
