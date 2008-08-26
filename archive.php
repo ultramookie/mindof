@@ -12,7 +12,7 @@
                 $pagenum = $_GET['pagenum'];
         }
 
-	showEntriesArchive($numEntries,$_SESSION['secret'],$pagenum);
+	showEntriesArchive($numEntries,$pagenum);
 
 	$pagenum++;
 

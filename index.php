@@ -4,18 +4,18 @@
 
 <?php
 	$numEntries = getIndexNum();
-	$secret = getSecret();
+	$cookie = $_COOKIE['mindof'];
+	$storedcookie = getCookie();
 	$twitter_update = gettwitterCheck();
 	$twitter_email = gettwitterEmail();
 	$pownce_user = getpownceUser();
 	$pownce_update = getpownceCheck();
 
-        if($_SESSION['user']) {
+        if($cookie == $storedcookie) {
 		showUpdateForm();
-		$userloggedin = 1;
         }
 
-        if( ($_SESSION['user']) && ($_SESSION['secret'] == $secret) && ((stripslashes($_POST['checksubmit']))) ) {
+        if( ($cookie == $storedcookie) && ((stripslashes($_POST['checksubmit']))) ) {
 		$update = strip_tags($_POST['update']);
 		addEntry($update);
 		if ( ($twitter_update == 1) && (strlen($twitter_email) > 0) ) {
@@ -29,7 +29,7 @@
 		echo "mindof updated.";
         }
 
-	showEntriesIndex($numEntries,$_SESSION['secret']);
+	showEntriesIndex($numEntries);
 
 	echo "<a href=\"" . $siteUrl  . "archive.php?pagenum=2\" class=\"box\">older &#187;</a>";
 ?>

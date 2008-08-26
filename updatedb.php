@@ -4,6 +4,26 @@ include_once("db.php");
 
 $sitename = getSiteName();
 
+$query = "show colums from user";
+$result = mysql_query($query);
+
+$cookieExists = 0;
+
+while ($row = mysql_fetch_array($result)) {
+        if ((strcmp($row['Field'],"cookie")) == 0) {
+                $cookieExists = 1;
+        }
+}
+
+if ($cookieExists == 0) {
+        $query = "alter table user add cookie varchar(300)";
+        $status = mysql_query($query);
+        echo "cookie column added<br />";
+} else {
+        echo "cookie column already exists!<br />";
+}
+
+
 $query = "show columns from site";
 $result = mysql_query($query);
 

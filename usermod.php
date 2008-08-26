@@ -7,7 +7,8 @@ include_once("mindoflib.php");
 if (!(stripslashes($_POST['checksubmit']))) {
 	showPasswordChangeform();
 } else {
-        $user = $_SESSION['user'];
+	$username = getUserName();
+        $user = $username;
         $pass  = stripslashes($_POST['oldpass']);
 	$newpass1 = stripslashes($_POST['newpass1']);
 	$newpass2 = stripslashes($_POST['newpass2']);

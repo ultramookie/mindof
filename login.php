@@ -13,9 +13,7 @@ if (!(stripslashes($_POST['checksubmit']))) {
 	$logincheck = checkLogin($user,$pass);
 
 	if ($logincheck == 0) {
-		$secret = getSecret();
-		$_SESSION["user"] = $user;
-		$_SESSION["secret"] = $secret;
+		setLoginCookie($user);
 		echo "thanks for logging in $user!<br /><b>return to <a href='$siteurl'>$sitename</a></b>.";
 	} else {
 		echo "login failed.  try again.";

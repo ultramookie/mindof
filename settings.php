@@ -7,17 +7,16 @@
 include_once("db.php");
 include_once("mindoflib.php");
 
-$secret = getSecret();
-
-if ((stripslashes(!$_POST['checksubmit'])) && ($_SESSION['secret'] == $secret) ) {
+if ((stripslashes(!$_POST['checksubmit'])) && (checkCookie()) ) {
 	showSettingsform();
-} else if ($_SESSION['secret'] == $secret) {
+} else if (checkCookie()) {
 
+	$username = getUserName();
 	$site = strip_tags($_POST['site']);
 	$url = stripslashes($_POST['url']);
 	$numberIndex = stripslashes($_POST['index']);
 	$numberRSS = stripslashes($_POST['rss']);
-        $user = $_SESSION['user'];
+        $user = $username;
         $pass  = stripslashes($_POST['pass']);
 
         $logincheck = checkLogin($user,$pass);

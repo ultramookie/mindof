@@ -92,17 +92,17 @@ function updatePownce($status) {
 	}
 }
 
-function showEntriesIndex($num,$loggedin) {
+function showEntriesIndex($num) {
 
         $query = "select id from main order by entrytime desc limit $num";
         $result = mysql_query($query);
 
         while ($row = mysql_fetch_array($result)) {
-		printEntry($row['id'],$loggedin);
+		printEntry($row['id']);
         }
 }
 
-function showEntriesArchive($num,$loggedin,$pnum) {
+function showEntriesArchive($num,$pnum) {
 
         if($pnum == 1) {
                 $offset = 1;
@@ -114,14 +114,17 @@ function showEntriesArchive($num,$loggedin,$pnum) {
         $result = mysql_query($query);
 
         while ($row = mysql_fetch_array($result)) {
-		printEntry($row['id'],$loggedin);
+		printEntry($row['id']);
         }
 }
 
 
-function printEntry($id,$loggedin) {
-	$secret = getSecret();
-        $query = "select entry,date_format(entrytime, '%b %e, %Y @ %h:%i %p') as date from main where id = '$id'";
+function printEntry($id) {
+       
+	$cookie = $_COOKIE['mindof'];
+	$storedcookie = getCookie();
+ 
+	$query = "select entry,date_format(entrytime, '%b %e, %Y @ %h:%i %p') as date from main where id = '$id'";
         $result = mysql_query($query);
         $row = mysql_fetch_array($result);
 
@@ -134,7 +137,7 @@ function printEntry($id,$loggedin) {
         echo "<p class=\"entry\">" . $text . " </p>";
 	echo "<p class=\"timedate\">" . $row['date'];
         echo " <a href=\"entry.php?number=" . $id ."\"><img src=\"page_link.gif\" border=\"0\" /></a> ";
-	if($loggedin == $secret) {
+	if($cookie == $storedcookie) {
 		echo "<a href=\"delete.php?number=" . $id ."\"><img src=\"page_delete.gif\" border=\"0\" /></a> ";
 	}
 	echo "</p><hr />";
@@ -194,6 +197,44 @@ function getSecret() {
         $row = mysql_fetch_array($result);
 
         return($row['secret']);
+}
+
+function getCookie() {
+        $query = "select cookie from user limit 1";
+        $result = mysql_query($query);
+
+        $row = mysql_fetch_array($result);
+
+        return($row['cookie']);
+}
+
+function checkCookie() {
+	$cookie = $_COOKIE['mindof'];
+	$storedcookie = getCookie();
+
+	$loggedin = 0;
+
+	if ( (strlen($cookie) > 0) && ($cookie == $storedcookie) ) {
+		$loggedin = 1;
+	}
+
+	return $loggedin;
+}
+
+function getUserName() {
+	$cookie = $_COOKIE['mindof'];
+
+	$name = "not done";
+
+	if(checkCookie()) {
+		$query = "select name from user where cookie like '$cookie'";
+		$result = mysql_query($query);
+		$row = mysql_fetch_array($result);
+		$name = $row['name'];
+	} else {
+		$name = "not logged in";
+	}
+	return $name;
 }
 
 function getNumEntries() {
@@ -329,6 +370,23 @@ function getRssNum() {
         $row = mysql_fetch_array($result);
 
         return($row['rssNum']);
+}
+
+function setLoginCookie($user) {
+		$secret = getSecret();
+                $login = sha1($user . $secret);
+                $expiry = time()+60*60*24*30;
+                setcookie('mindof',$login,"$expiry");
+
+	        $query = "update user set cookie='$login' where name like '$user'";
+        	$result = mysql_query($query);
+}
+
+function killCookie() {
+	if(checkCookie()) {
+		$expiry = time();
+		setcookie('mindof','',"$expiry");
+	}
 }
 
 function checkLogin($user,$pass) {
@@ -488,8 +546,9 @@ function generateCode($length=16) {
 }
 
 function showPasswordChangeform() {
+	$username = getUserName();
 	echo "changing password for ";
-	echo $_SESSION['user'];
+	echo $username;
 	echo "<form action=\"";
 	echo $_SERVER['PHP_SELF'];
 	echo "\"";
@@ -569,7 +628,7 @@ function addUser($user,$email,$pass,$site,$url) {
 		$site = mysql_real_escape_string($site);
 		$url = mysql_real_escape_string($url);
 		
-		$query = "create table user ( name varchar(30) NOT NULL, email varchar(30) NOT NULL, pass varchar(30) NOT NULL, secret varchar(6))";
+		$query = "create table user ( name varchar(30) NOT NULL, email varchar(30) NOT NULL, pass varchar(30) NOT NULL, secret varchar(6), cookie varchar(300) )";
 		$status = mysql_query($query);
 
 		$query = "create table main ( id int NOT NULL AUTO_INCREMENT, entrytime DATETIME NOT NULL, entry varchar(160) NOT NULL, PRIMARY KEY (id)); ";

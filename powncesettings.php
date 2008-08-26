@@ -7,18 +7,16 @@
 include_once("db.php");
 include_once("mindoflib.php");
 
-$secret = getSecret();
-
-if ((stripslashes(!$_POST['checksubmit'])) && ($_SESSION['secret'] == $secret) ) {
+if ((stripslashes(!$_POST['checksubmit'])) && (checkCookie()) ) {
 	showPownceform();
-} else if ($_SESSION['secret'] == $secret) {
+} else if (checkCookie()) {
 
 	$pownceCheck = stripslashes($_POST['pownceCheck']);
 	$pownceUser = stripslashes($_POST['pownceUser']);
 	$powncePass1 = stripslashes($_POST['powncePass1']);
 	$powncePass2 = stripslashes($_POST['powncePass2']);
 	$pownceAppKey = stripslashes($_POST['pownceAppKey']);
-        $user = $_SESSION['user'];
+        $user = getUserName();
         $pass  = stripslashes($_POST['pass']);
 
         $logincheck = checkLogin($user,$pass);

@@ -7,17 +7,16 @@
 include_once("db.php");
 include_once("mindoflib.php");
 
-$secret = getSecret();
-
-if ((stripslashes(!$_POST['checksubmit'])) && ($_SESSION['secret'] == $secret) ) {
+if ((stripslashes(!$_POST['checksubmit'])) && (checkCookie()) ) {
 	showTwitterform();
-} else if ($_SESSION['secret'] == $secret) {
+} else if (checkCookie()) {
 
+	$username = getUserName();
 	$twitterCheck = stripslashes($_POST['twitterCheck']);
 	$twitterEmail = stripslashes($_POST['twitterEmail']);
 	$twitterPass1 = stripslashes($_POST['twitterPass1']);
 	$twitterPass2 = stripslashes($_POST['twitterPass2']);
-        $user = $_SESSION['user'];
+        $user = $username;
         $pass  = stripslashes($_POST['pass']);
 
         $logincheck = checkLogin($user,$pass);

@@ -3,9 +3,15 @@ mindof
 
 version 0.6.4 (TBD)
 
+UPGRADE INSTRUCTIONS
+        the database schema has changed:
+        point your webbrowser to http://<yoursiteurl>/<mindoflocation/updatedb.php
+
 ENHANCEMENTS
 	+ icons added!  using famfamfam mini icons
 	  http://www.famfamfam.com/lab/icons/mini/
+	+ switched from sessions-based auth to
+	  cookie-based.
 
 version 0.6.3 (8/25/08)
 

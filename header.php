@@ -1,10 +1,6 @@
 <? 
 include_once("db.php");
 include_once("mindoflib.php");
-
-if(!isset($_SESSION)) {
-	session_start(); 
-}
 ?>
 <html>
 <head>
@@ -15,8 +11,9 @@ if(!isset($_SESSION)) {
 <h2 class="title"><b><a href="<? echo "$siteurl"; ?>" class="title"><? echo "$sitename"; ?></a></b></h2>
 <p class="menu">
 <?php
-	if($_SESSION['user']) {
-		echo "<a href=\"usermod.php\" class=\"menu\">" . $_SESSION['user'] . "</a> | updates: " . $numOfEntries . " | <a href=\"settings.php\" class=\"menu\">site admin</a> | <a href=\"iphone.php\" class=\"menu\">iphone</a> | <a href=\"rss.php\" class=\"menu\">rss</a> | <a href=\"logout.php\" class=\"menu\">logout</a>";
+	if(checkCookie()) {
+		$username = getUserName();
+		echo "<a href=\"usermod.php\" class=\"menu\">" . $username . "</a> | updates: " . $numOfEntries . " | <a href=\"settings.php\" class=\"menu\">site admin</a> | <a href=\"iphone.php\" class=\"menu\">iphone</a> | <a href=\"rss.php\" class=\"menu\">rss</a> | <a href=\"logout.php\" class=\"menu\">logout</a>";
 	} else {
 		echo "updates: " . $numOfEntries . " | <a href=\"login.php\" class=\"menu\">login</a> | <a href=\"iphone.php\" class=\"menu\">iphone</a> | <a href=\"rss.php\" class=\"menu\">rss</a>";
 	}
