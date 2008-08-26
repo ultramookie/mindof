@@ -1,12 +1,8 @@
 <?php
-
-include_once("header.php");
 include_once("db.php");
 include_once("mindoflib.php");
 
-if (!(stripslashes($_POST['checksubmit']))) {
-	showLoginform();
-} else {
+if (stripslashes($_POST['checksubmit'])) {
         $user = stripslashes($_POST['user']);
         $pass  = stripslashes($_POST['pass']);
 
@@ -14,6 +10,15 @@ if (!(stripslashes($_POST['checksubmit']))) {
 
 	if ($logincheck == 0) {
 		setLoginCookie($user);
+	}
+}
+
+include_once("header.php");
+
+if (!(stripslashes($_POST['checksubmit']))) {
+	showLoginform();
+} else {
+	if ($logincheck == 0) {
 		echo "thanks for logging in $user!<br /><b>return to <a href='$siteurl'>$sitename</a></b>.";
 	} else {
 		echo "login failed.  try again.";
