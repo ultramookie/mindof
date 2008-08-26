@@ -1,7 +1,12 @@
 mindof
 ======
 
-version 0.6.4 (TBD)
+version 0.6.5 (TBD)
+
+ENHANCEMENTS
+	+ changed cookie handling.
+
+version 0.6.4 (8/26/08)
 
 UPGRADE INSTRUCTIONS
         the database schema has changed:
