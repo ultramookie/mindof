@@ -121,9 +121,6 @@ function showEntriesArchive($num,$pnum) {
 
 function printEntry($id) {
        
-	$cookie = $_COOKIE['mindof'];
-	$storedcookie = getCookie();
- 
 	$query = "select entry,date_format(entrytime, '%b %e, %Y @ %h:%i %p') as date from main where id = '$id'";
         $result = mysql_query($query);
         $row = mysql_fetch_array($result);
@@ -137,7 +134,7 @@ function printEntry($id) {
         echo "<p class=\"entry\">" . $text . " </p>";
 	echo "<p class=\"timedate\">" . $row['date'];
         echo " <a href=\"entry.php?number=" . $id ."\"><img src=\"page_link.gif\" border=\"0\" /></a> ";
-	if($cookie == $storedcookie) {
+	if(checkCookie()) {
 		echo "<a href=\"delete.php?number=" . $id ."\"><img src=\"page_delete.gif\" border=\"0\" /></a> ";
 	}
 	echo "</p><hr />";
@@ -223,8 +220,6 @@ function checkCookie() {
 
 function getUserName() {
 	$cookie = $_COOKIE['mindof'];
-
-	$name = "not done";
 
 	if(checkCookie()) {
 		$query = "select name from user where cookie like '$cookie'";
