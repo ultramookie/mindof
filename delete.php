@@ -6,12 +6,9 @@ include_once("mindoflib.php");
 
 $id = $_GET['number'];
 
-$cookie = $_COOKIE['mindof'];
-$storedcookie = getCookie();
-
-if (!(stripslashes($_POST['checksubmit'])) &&  ($cookie == $storedcookie)) {
+if (!(stripslashes($_POST['checksubmit'])) &&  (checkCookie())) {
         showDelform($id);
-} else if ( (stripslashes($_POST['checksubmit'])) && ($cookie == $storedcookie) ) {
+} else if ( (stripslashes($_POST['checksubmit'])) && (checkCookie()) ) {
 	deleteEntry( stripslashes($_POST['id']));
 } else {
         echo "please <a href='login.php'>login</a> in order to delete entries!";

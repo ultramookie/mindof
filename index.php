@@ -11,11 +11,11 @@
 	$pownce_user = getpownceUser();
 	$pownce_update = getpownceCheck();
 
-        if($cookie == $storedcookie) {
+        if(checkCookie()) {
 		showUpdateForm();
         }
 
-        if( ($cookie == $storedcookie) && ((stripslashes($_POST['checksubmit']))) ) {
+        if( (checkCookie()) && ((stripslashes($_POST['checksubmit']))) ) {
 		$update = strip_tags($_POST['update']);
 		addEntry($update);
 		if ( ($twitter_update == 1) && (strlen($twitter_email) > 0) ) {
