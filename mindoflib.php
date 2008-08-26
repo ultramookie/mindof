@@ -206,12 +206,16 @@ function getCookie() {
 }
 
 function checkCookie() {
+	$secret = getSecret();
 	$cookie = $_COOKIE['mindof'];
+	$user = $_COOKIE['user'];
 	$storedcookie = getCookie();
 
 	$loggedin = 0;
 
-	if ( (strlen($cookie) > 0) && ($cookie == $storedcookie) ) {
+	$test = sha1($user . $secret);
+
+	if ( (strlen($cookie) > 0) && ($cookie == $storedcookie) && ($cookie == $test) ) {
 		$loggedin = 1;
 	}
 
@@ -219,13 +223,8 @@ function checkCookie() {
 }
 
 function getUserName() {
-	$cookie = $_COOKIE['mindof'];
-
 	if(checkCookie()) {
-		$query = "select name from user where cookie like '$cookie'";
-		$result = mysql_query($query);
-		$row = mysql_fetch_array($result);
-		$name = $row['name'];
+		$name = $_COOKIE['user'];
 	} else {
 		$name = "not logged in";
 	}
@@ -371,6 +370,7 @@ function setLoginCookie($user) {
 		$secret = getSecret();
                 $login = sha1($user . $secret);
                 $expiry = time()+60*60*24*30;
+		setcookie('user',$user,"$expiry");
                 setcookie('mindof',$login,"$expiry");
 
 	        $query = "update user set cookie='$login' where name like '$user'";
@@ -379,7 +379,8 @@ function setLoginCookie($user) {
 
 function killCookie() {
 	if(checkCookie()) {
-		$expiry = time();
+		$expiry = time() - 4800;
+		setcookie('user','',"$expiry");
 		setcookie('mindof','',"$expiry");
 	}
 }
