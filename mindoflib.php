@@ -330,7 +330,7 @@ function getSiteName() {
 	return($row['name']);
 }
 
-function getSiteURl() {
+function getSiteUrl() {
 	$query = "select url from site limit 1";
 	$result = mysql_query($query);
 

@@ -3,6 +3,8 @@ include_once("db.php");
 include_once("mindoflib.php");
 
 	killCookie();
+        header("Location: $siteurl");
+
 
 include_once("header.php");
 ?>
