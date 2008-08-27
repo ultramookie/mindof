@@ -5,6 +5,7 @@ version 0.6.5 (TBD)
 
 ENHANCEMENTS
 	+ changed cookie handling.
+	+ added redirect to login and logout pages.
 
 version 0.6.4 (8/26/08)
 
