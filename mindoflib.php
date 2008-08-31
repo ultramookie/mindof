@@ -140,6 +140,27 @@ function printEntry($id) {
 	echo "</p><hr />";
 }
 
+function makeYouTube($in_url) {
+
+	list($blah,$args) = split("\?",$in_url,2);
+
+	if ($args) {
+		$argsList = split("\&",$args);
+		$num = count($argsList);
+		for($i=0;$i<=$num;$i++) {
+			list($key,$value) = split("=",$argsList[$i]);
+			$$key = $value;
+		}
+		if ($v) {
+			$youtube = "<object width=\"425\" height=\"344\"><param name=\"movie\" value=\"http://www.youtube.com/v/$v&hl=en&fs=1\"></param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"http://www.youtube.com/v/$v&hl=en&fs=1\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" width=\"425\" height=\"344\"></embed></object>";
+		} else {
+		$youtube = "<a href=\"$youtube_url\">$youtube_url</a>";
+		}
+	}
+
+	return ($youtube);
+}
+
 function makeFlickr($in_url) {
 
 	$appkey = "260422cecc98a0ef5233856d6b7ffc05";
@@ -177,9 +198,12 @@ function makeLinks($text) {
 	$size = count($chunk);
 
 	for($i=0;$i<$size;$i++) {
-		if(ereg("^http.*flickr\.com.*photos",$chunk[$i])) {
+		if(ereg("^http.*youtube\.com.*watch",$chunk[$i])) {
+			$embed = makeYouTube($chunk[$i]);
+			$total = $total . "<br /><br />" . $embed . "<br /><br />";
+		} else if(ereg("^http.*flickr\.com.*photos",$chunk[$i])) {
 			$embed = makeFlickr($chunk[$i]);
-			$total = $total . "<br />" . $embed . "<br />";
+			$total = $total . "<br /><br />" . $embed . "<br /><br />";
 		} else if(ereg("^http",$chunk[$i])) {
 			$url = $chunk[$i];
 			$new = "<a href=\"$url\">$url</a>";

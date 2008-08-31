@@ -14,6 +14,9 @@ ENHANCEMENTS
 	+ added ability to create img for flickr urls.  just cut and paste the
 	  url to a flickr image page into any posting, and it will get parsed
 	  correctly and an image+link will be displayed.
+	+ added ability to embed youtube videos.  same as flickr, just cut and
+	  paste the url to the youtube video page into any posting. the url will
+	  get parsed correctly and an embedded video will show up in the posting.
 
 version 0.6.4 (8/26/08)
 
