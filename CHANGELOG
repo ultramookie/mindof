@@ -1,7 +1,11 @@
 mindof
 ======
+version 0.7.1 (TBD)
 
-version 0.6.5 (/8/31/08)
+FIXES
+	+ added checks for the flickr api parsing.
+
+version 0.7 (8/31/08)
 
 IMPORTANT NOTICE
 	+ flickr integration requires simplexml.  a pre-req for simplexml is
