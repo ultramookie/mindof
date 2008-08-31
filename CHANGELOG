@@ -3,6 +3,11 @@ mindof
 
 version 0.6.5 (TBD)
 
+IMPORTANT NOTICE
+	+ flickr integration requires simplexml.  a pre-req for simplexml is
+	  php5. if you plan on using this upgrade along with the flickr 
+	  integration, be sure you are running php5.
+
 ENHANCEMENTS
 	+ changed cookie handling.
 	+ added redirect to login and logout pages.
