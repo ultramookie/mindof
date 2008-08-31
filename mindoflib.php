@@ -181,7 +181,7 @@ function makeFlickr($in_url) {
 
 		$xml = simplexml_load_string($result);
 
-		foreach ($xml->sizes->size[2]->attributes() as $key => $value) {
+		foreach ($xml->sizes->size[3]->attributes() as $key => $value) {
 			$$key = $value;
 		}
 

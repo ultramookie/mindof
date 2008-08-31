@@ -3,8 +3,8 @@ body {
 	font-family: "Verdana", Sans;
 	color:#000000;
 	background:#FFFFFF; 
-	margin-left: 200px;
-	width: 450px;
+	margin-left: 100px;
+	width: 550px;
 }
 
 a {
@@ -41,6 +41,7 @@ hr {
 .entry {
 	font-size: medium;
 	background:#F0F0F0;
+	padding: 10px 25px;
 }
 
 .timedate {
