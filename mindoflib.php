@@ -181,11 +181,16 @@ function makeFlickr($in_url) {
 
 		$xml = simplexml_load_string($result);
 
-		foreach ($xml->sizes->size[3]->attributes() as $key => $value) {
-			$$key = $value;
+		if ($xml->attributes() == "ok") {
+			foreach ($xml->sizes->size[3]->attributes() as $key => $value) {
+				$$key = $value;
+			}
+
+			$flickr = "<a href=\"$in_url\"><img src=\"$source\" width=\"$width\" height=\"$height\" /></a>";
+		} else {
+			$flickr = "<a href=\"$in_url\">$in_url</a>";
 		}
 
-		$flickr = "<a href=\"$in_url\"><img src=\"$source\" width=\"$width\" height=\"$height\" /></a>";
 	} else {
 		$flickr = "<a href=\"$in_url\">$in_url</a>";
 	}
