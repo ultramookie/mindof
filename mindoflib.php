@@ -146,24 +146,28 @@ function makeFlickr($in_url) {
 
 	list($http,$blah,$base,$photos,$user,$photoid) = split("/",$in_url,7);
 
-	$url = "http://api.flickr.com/services/rest/";
+	if ($photoid) {
+		$url = "http://api.flickr.com/services/rest/";
 
-	$session = curl_init();
-	curl_setopt ( $session, CURLOPT_URL, $url );
-	curl_setopt ( $session, CURLOPT_HEADER, false );
-	curl_setopt ( $session, CURLOPT_RETURNTRANSFER, 1 );
-	curl_setopt ( $session, CURLOPT_POST, 1);
-	curl_setopt ( $session, CURLOPT_POSTFIELDS,"method=flickr.photos.getSizes" . "&photo_id=" . $photoid . "&api_key=" . $appkey);
-	$result = curl_exec ( $session );
-	curl_close( $session );
+		$session = curl_init();
+		curl_setopt ( $session, CURLOPT_URL, $url );
+		curl_setopt ( $session, CURLOPT_HEADER, false );
+		curl_setopt ( $session, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt ( $session, CURLOPT_POST, 1);
+		curl_setopt ( $session, CURLOPT_POSTFIELDS,"method=flickr.photos.getSizes" . "&photo_id=" . $photoid . "&api_key=" . $appkey);
+		$result = curl_exec ( $session );
+		curl_close( $session );
 
-	$xml = simplexml_load_string($result);
+		$xml = simplexml_load_string($result);
 
-	foreach ($xml->sizes->size[2]->attributes() as $key => $value) {
-		$$key = $value;
+		foreach ($xml->sizes->size[2]->attributes() as $key => $value) {
+			$$key = $value;
+		}
+
+		$flickr = "<a href=\"$in_url\"><img src=\"$source\" width=\"$width\" height=\"$height\" /></a>";
+	} else {
+		$flickr = "<a href=\"$in_url\">$in_url</a>";
 	}
-
-	$flickr = "<a href=\"$in_url\"><img src=\"$source\" width=\"$width\" height=\"$height\" /></a>";
 
 	return($flickr);
 }
