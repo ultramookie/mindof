@@ -6,6 +6,9 @@ version 0.6.5 (TBD)
 ENHANCEMENTS
 	+ changed cookie handling.
 	+ added redirect to login and logout pages.
+	+ added ability to create img for flickr urls.  just cut and paste the
+	  url to a flickr image page into any posting, and it will get parsed
+	  correctly and an image+link will be displayed.
 
 version 0.6.4 (8/26/08)
 

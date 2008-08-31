@@ -140,12 +140,43 @@ function printEntry($id) {
 	echo "</p><hr />";
 }
 
+function makeFlickr($in_url) {
+
+	$appkey = "260422cecc98a0ef5233856d6b7ffc05";
+
+	list($http,$blah,$base,$photos,$user,$photoid) = split("/",$in_url,7);
+
+	$url = "http://api.flickr.com/services/rest/";
+
+	$session = curl_init();
+	curl_setopt ( $session, CURLOPT_URL, $url );
+	curl_setopt ( $session, CURLOPT_HEADER, false );
+	curl_setopt ( $session, CURLOPT_RETURNTRANSFER, 1 );
+	curl_setopt ( $session, CURLOPT_POST, 1);
+	curl_setopt ( $session, CURLOPT_POSTFIELDS,"method=flickr.photos.getSizes" . "&photo_id=" . $photoid . "&api_key=" . $appkey);
+	$result = curl_exec ( $session );
+	curl_close( $session );
+
+	$xml = simplexml_load_string($result);
+
+	foreach ($xml->sizes->size[2]->attributes() as $key => $value) {
+		$$key = $value;
+	}
+
+	$flickr = "<a href=\"$in_url\"><img src=\"$source\" width=\"$width\" height=\"$height\" /></a>";
+
+	return($flickr);
+}
+
 function makeLinks($text) {
-	$chunk = split(" ", $text);
+	$chunk = preg_split("/[\s,]+/", $text);
 	$size = count($chunk);
 
 	for($i=0;$i<$size;$i++) {
-		if(ereg("^http",$chunk[$i])) {
+		if(ereg("^http.*flickr\.com.*photos",$chunk[$i])) {
+			$embed = makeFlickr($chunk[$i]);
+			$total = $total . "<br />" . $embed . "<br />";
+		} else if(ereg("^http",$chunk[$i])) {
 			$url = $chunk[$i];
 			$new = "<a href=\"$url\">$url</a>";
 			$total = $total . " " . $new;
