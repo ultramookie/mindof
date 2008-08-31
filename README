@@ -8,7 +8,7 @@ http://www.gnu.org/licenses/gpl-3.0.html
 mindof is a small, fast, and compact microblog applcation for your own use.
 
 SYSTEM REQUIREMENTS
-	php
+	php5 (simplexml is used for flickr integration, that requires php5)
 	mysql
 
 OPTIONAL
