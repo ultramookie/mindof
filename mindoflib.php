@@ -211,7 +211,7 @@ function makeLinks($text) {
 			$total = $total . "<br /><br />" . $embed . "<br /><br />";
 		} else if(ereg("^http",$chunk[$i])) {
 			$url = $chunk[$i];
-			$new = "<a href=\"$url\">$url</a>";
+			$new = "<a href=\"$url\" rel=\"nofollow\" target=\"blank\">$url</a>";
 			$total = $total . " " . $new;
 		} else {
 			$total = $total . " " . $chunk[$i];
