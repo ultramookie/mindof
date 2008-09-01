@@ -186,7 +186,7 @@ function makeFlickr($in_url) {
 				$$key = $value;
 			}
 
-			$flickr = "<a href=\"$in_url\"><img src=\"$source\" width=\"$width\" height=\"$height\" /></a>";
+			$flickr = "<a href=\"$in_url\"><img src=\"$source\" width=\"$width\" height=\"$height\" border=\"0\" /></a>";
 		} else {
 			$flickr = "<a href=\"$in_url\">$in_url</a>";
 		}
