@@ -6,6 +6,12 @@ include_once("mindoflib.php");
 <head>
 <title><? echo "$sitename"; ?> </title>
 <link rel="stylesheet" type="text/css" media="screen" href="<? echo "$siteurl"; ?>/style.css"/>
+<script type="text/javascript" src="niftycube.js"></script> 
+<script type="text/javascript">
+	window.onload=function(){
+	Nifty("p,h2","transparent");
+	}
+</script> 
 </head>
 <body>
 <h2 class="title"><b><a href="<? echo "$siteurl"; ?>" class="title"><? echo "$sitename"; ?></a></b></h2>

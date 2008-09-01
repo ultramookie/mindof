@@ -5,6 +5,11 @@ version 0.7.1 (TBD)
 FIXES
 	+ added checks for the flickr api parsing.
 
+ENHANCEMENTS
+	+ added rounded corners thanks to nifty corners cube
+	  http://www.html.it/articoli/niftycube/index.html
+	+ tweaked css layout a bit.
+
 version 0.7 (8/31/08)
 
 IMPORTANT NOTICE
