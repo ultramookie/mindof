@@ -16,14 +16,15 @@ $rssNum = getRssNum();
 $numOfEntries = getNumEntries();
 
 function showUpdateForm() {
+	echo "<div id=\"txtmsg\" class=\"count\">&nbsp;</div>";
         echo "<form action=\"";
         echo $_SERVER['PHP_SELF'];
         echo "\"";
         echo " method=\"post\">";
-        echo "<textarea cols=\"50\" rows=\"2\" name=\"update\"></textarea>";
+        echo "<textarea cols=\"40\" rows=\"4\"  onkeyup=\"keyup(this)\" name=\"update\"></textarea>";
         echo "<input type=\"hidden\" name=\"checksubmit\" value=\"1\">";
 	echo "<br />";
-        echo "<input type=\"submit\" name=\"submit\" value=\"update\">";
+        echo "<input type=\"submit\" name=\"submit\" value=\"update\" id=\"submitbutton1\">";
         echo "</form>";
 }
 
@@ -58,9 +59,9 @@ function updateTwitter($status) {
 	// twitter returns a long string that contains the update when things
 	// are ok.
 	if (eregi("Could not authenticate you",$result)) {
-		echo "twitter error: " . $result . "<br />";
+		echo " <img src=\"action_stop.gif\" border=\"0\" /> twitter error: " . $result . "<br />";
 	} else {
-		echo "twitter updated.<br />";
+		echo " <img src=\"icon_accept.gif\" border=\"0\" /> twitter updated. ";
 	}
 }
 
@@ -86,9 +87,9 @@ function updatePownce($status) {
 	curl_close( $session );
 
 	if (eregi("401",$result)) {
-		echo "pownce error: " . $result . "<br />";
+		echo " <img src=\"action_stop.gif\" border=\"0\" /> pownce error: " . $result . "<br />";
 	} else {
-		echo "pownce updated.<br />";
+		echo " <img src=\"icon_accept.gif\" border=\"0\" />pownce updated. ";
 	}
 }
 
@@ -629,7 +630,7 @@ function changePass($user,$pass) {
 	$query = "update user set pass='$epass' where name like '$user'";
 	$result = mysql_query($query);
 
-	echo "password has been updated!";
+	echo " <img src=\"icon_accept.gif\" border=\"0\" /> password has been updated!";
 }
 
 function changeSettings($site,$url,$numberIndex,$numberRSS) {

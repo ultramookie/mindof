@@ -9,6 +9,9 @@ ENHANCEMENTS
 	+ added rounded corners thanks to nifty corners cube
 	  http://www.html.it/articoli/niftycube/index.html
 	+ tweaked css layout a bit.
+	+ added character counting.  thanks to sarah king (see
+	  README).
+	+ prettified "updated" messages.
 
 version 0.7 (8/31/08)
 

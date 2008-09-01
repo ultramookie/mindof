@@ -75,4 +75,14 @@ hr {
 	margin: 1px;
 	text-align:right;
 }
-	
+
+.count {
+	font-size: medium;
+	font-family: "Verdana", Sans;
+}
+
+.error {
+	font-size: medium;
+	font-family: "Verdana", Sans;
+	color: red;
+}

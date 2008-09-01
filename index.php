@@ -26,7 +26,7 @@
 			$pownce_update = stripslashes($_POST['update']);
 			updatePownce($update);
 		}
-		echo "mindof updated.";
+		echo " <img src=\"icon_accept.gif\" border=\"0\" /> mindof updated. ";
         }
 
 	showEntriesIndex($numEntries);
