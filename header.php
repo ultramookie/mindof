@@ -14,6 +14,7 @@ include_once("mindoflib.php");
 </script> 
 </head>
 <body>
+<div class="main">
 <h2 class="title"><b><a href="<? echo "$siteurl"; ?>" class="title"><? echo "$sitename"; ?></a></b></h2>
 <p class="menu">
 <?php

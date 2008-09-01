@@ -3,8 +3,12 @@ body {
 	font-family: "Verdana", Sans;
 	color:#000000;
 	background:#FFFFFF; 
-	margin-left: 100px;
 	width: 550px;
+}
+
+.main {
+	margin-left: 75px;
+	width: 575px;
 }
 
 a {
