@@ -2,7 +2,7 @@
 
 // mindof main library
 // steve "mookie" kong
-// http://ultramookie.com/mindof-project
+// http://mindof-project.org
 //
 // licensed under gplv3
 // http://www.gnu.org/licenses/gpl-3.0.html
