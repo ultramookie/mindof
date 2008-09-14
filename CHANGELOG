@@ -1,13 +1,11 @@
 mindof
 ======
-version 0.7.1 (TBD)
+version 0.7.1 (9/13/08)
 
 FIXES
 	+ added checks for the flickr api parsing.
 
 ENHANCEMENTS
-	+ added rounded corners thanks to nifty corners cube
-	  http://www.html.it/articoli/niftycube/index.html
 	+ tweaked css layout a bit.
 	+ added character counting.  thanks to sarah king (see
 	  README).
