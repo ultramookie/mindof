@@ -1,6 +1,6 @@
 mindof
 written by and copyright steve "mookie" kong
-http://ultramookie.com/mindof-project/
+http://mindof-project.org/
 
 licensed under gplv3
 http://www.gnu.org/licenses/gpl-3.0.html
@@ -33,10 +33,6 @@ CREDITS
 	mindof uses icons from the gorgeous mini icon set from famfamfam which is
 	licensed under the Creative Commons Attribution 2.5 license.
 	http://www.famfamfam.com/lab/icons/mini/
-
-	mindof uses nifty corners cube for awesome looking rounded corners. nifty
-	corners cube is written by alessandro fulciniti and is licensed under the
-	gnu gpl license.
 
 	mindof uses a modified version of the  character counting code from sarah king.
 	http://www.itamer.com/muck/chars.php
