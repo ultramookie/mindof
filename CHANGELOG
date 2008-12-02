@@ -1,5 +1,18 @@
 mindof
 ======
+
+version 0.7.2 (12/01/08)
+
+FIXES
+	+ removed pownce support as pownce is shutting down
+	  as of 12/15/08.
+	+ changed update box to be input text instead of
+	  textbox. this works better for mobile devices.
+	+ changed style.css to have a smaller left margin,
+	  makes things work and look better for mobile 
+	  devices.
+	+ removed iphone link from header. redundant.
+
 version 0.7.1 (9/13/08)
 
 FIXES

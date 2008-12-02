@@ -21,7 +21,7 @@ function showUpdateForm() {
         echo $_SERVER['PHP_SELF'];
         echo "\"";
         echo " method=\"post\">";
-        echo "<textarea cols=\"40\" rows=\"4\"  onkeyup=\"keyup(this)\" name=\"update\"></textarea>";
+        echo "<input type=\"text\" maxlength=\"140\" value=\"\" onkeyup=\"keyup(this)\" name=\"update\" />";
         echo "<input type=\"hidden\" name=\"checksubmit\" value=\"1\">";
 	echo "<br />";
         echo "<input type=\"submit\" name=\"submit\" value=\"update\" id=\"submitbutton1\">";
@@ -62,34 +62,6 @@ function updateTwitter($status) {
 		echo " <img src=\"action_stop.gif\" border=\"0\" /> twitter error: " . $result . "<br />";
 	} else {
 		echo " <img src=\"icon_accept.gif\" border=\"0\" /> twitter updated. ";
-	}
-}
-
-function updatePownce($status) {
-
-	$pownceuser = getpownceUser();
-	$powncepass = getpowncePass();
-	$pownceAppKey = getpownceAppKey();
-
-	$status = utf8_encode($status);
-
-	$url = "http://api.pownce.com/2.0/send/message.xml";
-
-	$session = curl_init();
-	curl_setopt ( $session, CURLOPT_URL, $url );
-	curl_setopt ( $session, CURLOPT_HTTPAUTH, CURLAUTH_BASIC );
-	curl_setopt ( $session, CURLOPT_HEADER, false );
-	curl_setopt ( $session, CURLOPT_USERPWD, $pownceuser . ":" . $powncepass );
-	curl_setopt ( $session, CURLOPT_RETURNTRANSFER, 1 );
-	curl_setopt ( $session, CURLOPT_POST, 1);
-	curl_setopt ( $session, CURLOPT_POSTFIELDS,"app_key=" . $pownceAppKey . "&note_to=public" . "&note_body=" . $status);
-	$result = curl_exec ( $session );
-	curl_close( $session );
-
-	if (eregi("401",$result)) {
-		echo " <img src=\"action_stop.gif\" border=\"0\" /> pownce error: " . $result . "<br />";
-	} else {
-		echo " <img src=\"icon_accept.gif\" border=\"0\" />pownce updated. ";
 	}
 }
 
@@ -323,15 +295,6 @@ function gettwitterEmail() {
         return($row['twitterEmail']);
 }
 
-function getpownceUser() {
-        $query = "select pownceUser from site limit 1";
-        $result = mysql_query($query);
-
-        $row = mysql_fetch_array($result);
-
-        return($row['pownceUser']);
-}
-
 function gettwitterPass() {
         $query = "select twitterPass from site limit 1";
         $result = mysql_query($query);
@@ -341,24 +304,6 @@ function gettwitterPass() {
         return($row['twitterPass']);
 }
 
-function getpowncePass() {
-        $query = "select powncePass from site limit 1";
-        $result = mysql_query($query);
-
-        $row = mysql_fetch_array($result);
-
-        return($row['powncePass']);
-}
-
-function getpownceAppKey() {
-        $query = "select pownceAppKey from site limit 1";
-        $result = mysql_query($query);
-
-        $row = mysql_fetch_array($result);
-
-        return($row['pownceAppKey']);
-}
-
 function gettwitterCheck() {
         $query = "select twitterCheck from site limit 1";
         $result = mysql_query($query);
@@ -366,15 +311,6 @@ function gettwitterCheck() {
         $row = mysql_fetch_array($result);
 
         return($row['twitterCheck']);
-}
-
-function getpownceCheck() {
-        $query = "select pownceCheck from site limit 1";
-        $result = mysql_query($query);
-
-        $row = mysql_fetch_array($result);
-
-        return($row['pownceCheck']);
 }
 
 function getUser() {
@@ -486,7 +422,7 @@ function showSettingsform() {
 	$indexNum = getIndexNum();
 	$rssNum = getRssNum();
 	
-	echo "<p>click here for: <a href=\"twittersettings.php\">twitter settings</a> | <a href=\"powncesettings.php\">pownce settings</a></p>";
+	echo "<p>click here for: <a href=\"twittersettings.php\">twitter settings</a></p>";
 	echo "<p><b>general site settings:</b></p>";
 	echo "<form action=\"";
 	echo $_SERVER['PHP_SELF'];
@@ -530,35 +466,6 @@ function showTwitterform() {
 	echo "<input type=\"submit\" name=\"submit\" value=\"update\">";
 	echo "</form>";
 
-}
-function showPownceform() {
-
-	$pownceCheck =  getpownceCheck();
-	$pownceUser = getpownceUser();
-	$pownceAppKey = getpownceAppKey();
-
-	if($pownceCheck == 1) {
-		$checked = "checked";
-	} else  {
-		$checked = "";
-	}
-
-	echo "<br /><br />in order to use pownce integration, you'll need to get a <a href=\"http://pownce.com/api/apps/new/\">pownce app key</a>.<br /><br />";
-
-	echo "<form action=\"";
-	echo $_SERVER['PHP_SELF'];
-	echo "\"";
-	echo " method=\"post\">";
-        echo "user: <input type=\"text\" name=\"user\"><br />";
-        echo "pass: <input type=\"password\" name=\"pass\"><br />";
-	echo "update pownce also: <input type=\"checkbox\" name=\"pownceCheck\" value=\"1\" " .  $checked . "><br />";
-	echo "pownce user: <input type=\"text\" name=\"pownceUser\" value=\"" . $pownceUser . "\"><br />";
-	echo "pownce password: <input type=\"password\" name=\"powncePass1\"><br />";
-	echo "pownce password (again): <input type=\"password\" name=\"powncePass2\"><br />";
-	echo "<a href=\"http://pownce.com/api/apps/new/\">pownce app key</a>: <input type=\"text\" name=\"pownceAppKey\" value=\"" . $pownceAppKey . "\"><br />";
-	echo "<input type=\"hidden\" name=\"checksubmit\" value=\"1\">";
-	echo "<input type=\"submit\" name=\"submit\" value=\"update\">";
-	echo "</form>";
 }
 
 function showDelform($id,$secret) {
@@ -659,20 +566,6 @@ function changeTwitterSettings($twitterCheck,$twitterEmail,$twitterPass) {
 	echo "your twitter settings have been updated!";
 }
 
-function changePownceSettings($pownceCheck,$pownceUser,$powncePass,$pownceAppKey) {
-
-        $pownceCheck = mysql_real_escape_string($pownceCheck);
-        $pownceUser = mysql_real_escape_string($pownceUser);
-        $powncePass = mysql_real_escape_string($powncePass);
-        $pownceAppKey = mysql_real_escape_string($pownceAppKey);
-
-	$query = "update site set pownceCheck='$pownceCheck', pownceUser='$pownceUser', powncePass='$powncePass', pownceAppKey='$pownceAppKey' limit 1";
-	$result = mysql_query($query);
-
-	echo "your pownce settings have been updated!";
-}
-
-
 function addUser($user,$email,$pass,$site,$url) {
         $salt = substr("$email",0,2);
         $epass = crypt($pass,$salt);
@@ -695,7 +588,7 @@ function addUser($user,$email,$pass,$site,$url) {
 		$query = "create table main ( id int NOT NULL AUTO_INCREMENT, entrytime DATETIME NOT NULL, entry varchar(160) NOT NULL, PRIMARY KEY (id)); ";
 		$status = mysql_query($query);
 		
-		$query = "create table site ( name varchar(160) NOT NULL, url varchar(160) NOT NULL, indexNum int NOT NULL, rssNum int NOT NULL, twitterCheck int NOT NULL, twitterEmail varchar(50), twitterPass varchar(50), pownceCheck int NOT NULL, pownceUser varchar(50), powncePass varchar(50), pownceAppKey varchar(50) ); ";
+		$query = "create table site ( name varchar(160) NOT NULL, url varchar(160) NOT NULL, indexNum int NOT NULL, rssNum int NOT NULL, twitterCheck int NOT NULL, twitterEmail varchar(50), twitterPass varchar(50) ); ";
 		$status = mysql_query($query);
 	
 		$secret = generateCode();
@@ -703,7 +596,7 @@ function addUser($user,$email,$pass,$site,$url) {
 		$query = "insert into user (name,email,pass,secret) values ('$user','$email','$epass','$secret')";
 		$status = mysql_query($query);
 	
-		$query = "insert into site (name,url,indexNum,rssNum,twitterCheck,twitterEmail,twitterPass,pownceCheck,pownceUser,powncePass,pownceAppKey) values ('$site','$url','10','10','0','','','0','','','')";
+		$query = "insert into site (name,url,indexNum,rssNum,twitterCheck,twitterEmail,twitterPass) values ('$site','$url','10','10','0','','')";
 		$status = mysql_query($query);
 
 		echo "mindof installed!  thanks!";

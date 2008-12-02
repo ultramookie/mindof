@@ -8,8 +8,6 @@
 	$storedcookie = getCookie();
 	$twitter_update = gettwitterCheck();
 	$twitter_email = gettwitterEmail();
-	$pownce_user = getpownceUser();
-	$pownce_update = getpownceCheck();
 
         if(checkCookie()) {
 		showUpdateForm();
@@ -21,10 +19,6 @@
 		if ( ($twitter_update == 1) && (strlen($twitter_email) > 0) ) {
 			$twit_update = stripslashes($_POST['update']);
 			updateTwitter($update);
-		}
-		if ( ($pownce_update == 1) && (strlen($pownce_user) > 0) ) {
-			$pownce_update = stripslashes($_POST['update']);
-			updatePownce($update);
 		}
 		echo " <img src=\"icon_accept.gif\" border=\"0\" /> mindof updated. ";
         }

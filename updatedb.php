@@ -49,18 +49,6 @@ while ($row = mysql_fetch_array($result)) {
 	if ((strcmp($row['Field'],"twitterPass")) == 0) {
 		$twitterPassexists = 1;
 	}
-	if ((strcmp($row['Field'],"pownceCheck")) == 0) {
-		$pownceCheckexists = 1;
-	}
-	if ((strcmp($row['Field'],"pownceUser")) == 0) {
-		$pownceUserexists = 1;
-	}
-	if ((strcmp($row['Field'],"powncePass")) == 0) {
-		$powncePassexists = 1;
-	}
-	if ((strcmp($row['Field'],"pownceAppKey")) == 0) {
-		$pownceAppKeyexists = 1;
-	}
 }
 
 if ($indexNumexists == 0) {
@@ -93,16 +81,6 @@ if ($twitterCheckexists == 0) {
 	echo "twitterCheck column already exists!<br />";
 }
 
-if ($pownceCheckexists == 0) {
-	$query = "alter table site add pownceCheck int NOT NULL";
-	$status = mysql_query($query);
-	$query = "update site set pownceCheck=0 where name like '$sitename'";
-	$status = mysql_query($query);
-	echo "pownceCheck column added<br />";
-} else {
-	echo "pownceCheck column already exists!<br />";
-}
-
 if ($twitterEmailexists == 0) {
 	$query = "alter table site add twitterEmail varchar(50)";
 	$status = mysql_query($query);
@@ -111,36 +89,12 @@ if ($twitterEmailexists == 0) {
 	echo "twitterEmail column already exists!<br />";
 }
 
-if ($pownceUserexists == 0) {
-	$query = "alter table site add pownceUser varchar(50)";
-	$status = mysql_query($query);
-	echo "pownceUser column added<br />";
-} else {
-	echo "pownceUser column already exists!<br />";
-}
-
 if ($twitterPassexists == 0) {
 	$query = "alter table site add twitterPass varchar(50)";
 	$status = mysql_query($query);
 	echo "twitterPass column added<br />";
 } else {
 	echo "twitterPass column already exists!<br />";
-}
-
-if ($powncePassexists == 0) {
-	$query = "alter table site add powncePass varchar(50)";
-	$status = mysql_query($query);
-	echo "powncePass column added<br />";
-} else {
-	echo "powncePass column already exists!<br />";
-}
-
-if ($pownceAppKeyexists == 0) {
-	$query = "alter table site add pownceAppKey varchar(50)";
-	$status = mysql_query($query);
-	echo "pownceAppKey column added<br />";
-} else {
-	echo "pownceAppKey column already exists!<br />";
 }
 
 echo "your db has been updated!";

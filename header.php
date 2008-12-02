@@ -18,7 +18,7 @@ include_once("mindoflib.php");
 <?php
 	if(checkCookie()) {
 		$username = getUserName();
-		echo "<a href=\"usermod.php\" class=\"menu\">" . $username . "</a> | updates: " . $numOfEntries . " | <a href=\"settings.php\" class=\"menu\">site admin</a> | <a href=\"iphone.php\" class=\"menu\">iphone</a> | <a href=\"rss.php\" class=\"menu\">rss</a> | <a href=\"logout.php\" class=\"menu\">logout</a>";
+		echo "<a href=\"usermod.php\" class=\"menu\">" . $username . "</a> | updates: " . $numOfEntries . " | <a href=\"settings.php\" class=\"menu\">site admin</a> | <a href=\"rss.php\" class=\"menu\">rss</a> | <a href=\"logout.php\" class=\"menu\">logout</a>";
 	} else {
 		echo "updates: " . $numOfEntries . " | <a href=\"login.php\" class=\"menu\">login</a> | <a href=\"iphone.php\" class=\"menu\">iphone</a> | <a href=\"rss.php\" class=\"menu\">rss</a>";
 	}
