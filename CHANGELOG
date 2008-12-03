@@ -1,6 +1,19 @@
 mindof
 ======
 
+version 0.7.3 (12/02/08)
+
+ENHANCEMENTS
+	+ added code to put up a big text entry box for
+	  desktop systems or a smaller one for mobile devices.
+	  right now keying off user agent words: 
+	  IEMobile, Windows CE, iPhone, Mobile
+	  those are the only phones available for testing, if you
+	  have a user agent that you want added, send it in 
+	  via the support forums.
+	+ removed a second "iphone" reference in header that 
+	  was missed before.
+
 version 0.7.2 (12/01/08)
 
 FIXES

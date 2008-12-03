@@ -16,12 +16,17 @@ $rssNum = getRssNum();
 $numOfEntries = getNumEntries();
 
 function showUpdateForm() {
+	$ua = $_SERVER['HTTP_USER_AGENT'];
 	echo "<div id=\"txtmsg\" class=\"count\">&nbsp;</div>";
         echo "<form action=\"";
         echo $_SERVER['PHP_SELF'];
         echo "\"";
         echo " method=\"post\">";
-        echo "<input type=\"text\" maxlength=\"140\" value=\"\" onkeyup=\"keyup(this)\" name=\"update\" />";
+	if (eregi("IEMobile|Windows\ CE|iPhone|Mobile",$ua)) {
+	        echo "<input type=\"text\" maxlength=\"140\" value=\"\" onkeyup=\"keyup(this)\" name=\"update\" />";
+	} else {
+		echo "<textarea cols=\"40\" rows=\"4\"  onkeyup=\"keyup(this)\" name=\"update\"></textarea>";
+	}
         echo "<input type=\"hidden\" name=\"checksubmit\" value=\"1\">";
 	echo "<br />";
         echo "<input type=\"submit\" name=\"submit\" value=\"update\" id=\"submitbutton1\">";
