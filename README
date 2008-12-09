@@ -13,8 +13,6 @@ SYSTEM REQUIREMENTS
 
 OPTIONAL
 	twitter username and password for twitter integration.
-	pownce application key, pownce username and pownce password.
-	pownce app key here:  http://pownce.com/api/apps/new/
 
 INSTALL INSTRUCTIONS
 	copy all files over to wherever you want to host your microblog.
@@ -23,7 +21,7 @@ INSTALL INSTRUCTIONS
 
 	edit config.php and enter the correct mysql database information.
 
-	point your webbrowser to http://<yoursiteurl>/<mindoflocation/install.php
+	point your webbrowser to http://<yoursiteurl>/<mindoflocation>/install.php
 
 	fill out information.
 
@@ -40,4 +38,4 @@ CREDITS
 
 DEVELOPMENT AND SUPPORT
 	find mind of development and support at:
-	http://mindof.googlecode.com
+	http://mindof-project.org
