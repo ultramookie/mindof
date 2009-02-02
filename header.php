@@ -7,6 +7,7 @@ include_once("mindoflib.php");
 <title><? echo "$sitename"; ?> </title>
 <link rel="stylesheet" type="text/css" media="screen" href="<? echo "$siteurl"; ?>/style.css"/>
 <link rel="alternate" type="application/rss+xml" title="<?php echo "$sitename"; ?> (RSS 2.0)" href="<?php echo "$siteurl"; ?>/rss.php"  />
+<meta name="generator" content="mindof <?php echo "$version"; ?>" />
 
 <!-- Character Counting -->
 <script type="text/javascript" src="count.js"></script> 
