@@ -45,7 +45,7 @@ function updateTwitter($status) {
 	$twitter_email = gettwitterEmail();
 	$twitter_pass = gettwitterPass();
 
-	$status = utf8_encode($status);
+	$status = urlencode(utf8_encode($status));
 
 	$url = "http://twitter.com/statuses/update.xml";
 
