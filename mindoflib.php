@@ -207,7 +207,7 @@ function printRSS($num) {
 
         while ($row = mysql_fetch_array($result)) {
 		echo "\t<item>\n";
-		echo "\t\t<title>" . $row['entry'] . "</title>\n";
+		echo "\t\t<title>" . htmlspecialchars($row['entry'],ENT_COMPAT,UTF-8) . "</title>\n";
 		echo "\t\t<pubDate>" . $row['date'] . " PST</pubDate>\n";
 		echo "\t\t<guid>" . $siteurl . "/entry.php?number=" . $row['id'] . "</guid>\n";
 		echo "\t\t<link>" . $siteurl . "/entry.php?number=" . $row['id'] . "</link>\n";
