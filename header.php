@@ -7,7 +7,9 @@ include_once("mindoflib.php");
 <html>
 <head>
 <title><? echo "$sitename"; ?> </title>
-<link rel="stylesheet" type="text/css" media="screen" href="<? echo "$siteurl"; ?>/style.css"/>
+<link rel="stylesheet" type="text/css" href="yui/base-min.css" />
+<link rel="stylesheet" type="text/css"  href="yui/reset-fonts.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="<? echo "$siteurl"; ?>/style.css" />
 <link rel="alternate" type="application/rss+xml" title="<?php echo "$sitename"; ?> (RSS 2.0)" href="<?php echo "$siteurl"; ?>/rss.php"  />
 <meta name="generator" content="mindof <?php echo "$version"; ?>" />
 
@@ -22,9 +24,9 @@ include_once("mindoflib.php");
 <?php
 	if(checkCookie()) {
 		$username = getUserName();
-		echo "<a href=\"usermod.php\" class=\"menu\">" . $username . "</a> | updates: " . $numOfEntries . " | <a href=\"settings.php\" class=\"menu\">site admin</a> | <a href=\"rss.php\" class=\"menu\">rss</a> | <a href=\"logout.php\" class=\"menu\">logout</a>";
+		echo "<a href=\"usermod.php\">" . $username . "</a> | updates: " . $numOfEntries . " | <a href=\"settings.php\">site admin</a> | <a href=\"rss.php\">rss</a> | <a href=\"logout.php\">logout</a>";
 	} else {
-		echo "updates: " . $numOfEntries . " | <a href=\"login.php\" class=\"menu\">login</a> | <a href=\"rss.php\" class=\"menu\">rss</a>";
+		echo "updates: " . $numOfEntries . " | <a href=\"login.php\">login</a> | <a href=\"rss.php\">rss</a>";
 	}
 ?>
 </p>

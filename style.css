@@ -1,5 +1,4 @@
 body {
-	font-size: small;
 	font-family: "Verdana", Sans;
 	color:#000000;
 	background:#FFFFFF; 
@@ -61,7 +60,8 @@ hr {
 	background:#BFBFBF;
 	color:#111111;
 	text-align:justify;
-	padding: 5px;
+	padding-left: 20px;
+	padding-bottom: 3px;
 }
 
 .footer {
