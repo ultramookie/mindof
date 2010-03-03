@@ -2,6 +2,8 @@
 include_once("db.php");
 include_once("mindoflib.php");
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+"http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 <title><? echo "$sitename"; ?> </title>
