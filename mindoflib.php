@@ -9,6 +9,9 @@
 
 error_reporting(E_ERROR | E_PARSE);
 
+require_once('twitteroauth/twitteroauth.php');
+require_once('oauth_config.php');
+
 $sitename = getSiteName();
 $siteurl = getSiteUrl();
 $indexNum = getIndexNum();
@@ -42,24 +45,13 @@ function addEntry($update) {
 
 function updateTwitter($status) {
 
-	$twitter_email = gettwitterEmail();
-	$twitter_pass = gettwitterPass();
+	$oauth_token = gettwitterEmail();
+	$oauth_token_secret = gettwitterPass();
 
-	$status = urlencode(utf8_encode($status));
-
-	$url = "http://twitter.com/statuses/update.xml";
-
-	$session = curl_init();
-	curl_setopt ( $session, CURLOPT_URL, $url );
-	curl_setopt ( $session, CURLOPT_HTTPAUTH, CURLAUTH_BASIC );
-	curl_setopt ( $session, CURLOPT_HEADER, false );
-	curl_setopt ( $session, CURLOPT_USERPWD, $twitter_email . ":" . $twitter_pass );
-	curl_setopt ( $session, CURLOPT_RETURNTRANSFER, 1 );
-	curl_setopt ( $session, CURLOPT_POST, 1);
-	curl_setopt ( $session, CURLOPT_POSTFIELDS,"status=" . $status . "&source=mindof");
-	$result = curl_exec ( $session );
-	curl_close( $session );
-
+	$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $oauth_token, $oauth_token_secret);
+	$connection->format = 'xml';
+	$connection->decode_json = FALSE;
+	$connection->post('statuses/update', array('status' => "$status"));
 	// check that everything went OK.
 	// twitter returns a long string that contains the update when things
 	// are ok.
@@ -449,12 +441,13 @@ function showSettingsform() {
 function showTwitterform() {
 
 	$twitterCheck =  gettwitterCheck();
-	$twitterEmail = gettwitterEmail();
 
 	if($twitterCheck == 1) {
 		$checked = "checked";
+		$content = '';
 	} else  {
 		$checked = "";
+		$content = '<a href="./redirect.php"><img src="./images/lighter.png" alt="Sign in with Twitter"/></a><br />';
 	}
 
 	echo "<form action=\"";
@@ -464,9 +457,7 @@ function showTwitterform() {
         echo "user: <input type=\"text\" name=\"user\"><br />";
         echo "pass: <input type=\"password\" name=\"pass\"><br />";
 	echo "update twitter also: <input type=\"checkbox\" name=\"twitterCheck\" value=\"1\" " .  $checked . "><br />";
-	echo "twitter email address: <input type=\"text\" name=\"twitterEmail\" value=\"" . $twitterEmail . "\"><br />";
-	echo "twitter password: <input type=\"password\" name=\"twitterPass1\"><br />";
-	echo "twitter password (again): <input type=\"password\" name=\"twitterPass2\"><br />";
+	print_r($content);
 	echo "<input type=\"hidden\" name=\"checksubmit\" value=\"1\">";
 	echo "<input type=\"submit\" name=\"submit\" value=\"update\">";
 	echo "</form>";
@@ -559,13 +550,25 @@ function changeSettings($site,$url,$numberIndex,$numberRSS) {
 
 }
 
-function changeTwitterSettings($twitterCheck,$twitterEmail,$twitterPass) {
+function changeTwitterSettings($twitterCheck,$oauth_token,$oauth_token_secret) {
 
         $twitterCheck = mysql_real_escape_string($twitterCheck);
-        $twitterEmail = mysql_real_escape_string($twitterEmail);
-        $twitterPass = mysql_real_escape_string($twitterPass);
+        $oauth_token = mysql_real_escape_string($oauth_token);
+        $oauth_token_secret = mysql_real_escape_string($oauth_token_secret);
+        
+	$query = "update site set twitterCheck='$twitterCheck', twitterEmail='$oauth_token', twitterPass='$oauth_token_secret' limit 1";
 
-	$query = "update site set twitterCheck='$twitterCheck', twitterEmail='$twitterEmail', twitterPass='$twitterPass' limit 1";
+	$result = mysql_query($query);
+
+	echo "your twitter settings have been updated!";
+}
+
+function updateTwitterSettings($twitterCheck) {
+
+        $twitterCheck = mysql_real_escape_string($twitterCheck);
+        
+	$query = "update site set twitterCheck='$twitterCheck' limit 1";
+
 	$result = mysql_query($query);
 
 	echo "your twitter settings have been updated!";
@@ -593,7 +596,7 @@ function addUser($user,$email,$pass,$site,$url) {
 		$query = "create table main ( id int NOT NULL AUTO_INCREMENT, entrytime DATETIME NOT NULL, entry varchar(160) NOT NULL, PRIMARY KEY (id)); ";
 		$status = mysql_query($query);
 		
-		$query = "create table site ( name varchar(160) NOT NULL, url varchar(160) NOT NULL, indexNum int NOT NULL, rssNum int NOT NULL, twitterCheck int NOT NULL, twitterEmail varchar(50), twitterPass varchar(50) ); ";
+		$query = "create table site ( name varchar(160) NOT NULL, url varchar(160) NOT NULL, indexNum int NOT NULL, rssNum int NOT NULL, twitterCheck int NOT NULL, twitterEmail varchar(250), twitterPass varchar(250) ); ";
 		$status = mysql_query($query);
 	
 		$secret = generateCode();

@@ -35,6 +35,9 @@ CREDITS
 	mindof uses a modified version of the  character counting code from sarah king.
 	http://www.itamer.com/muck/chars.php
 
+	mindof uses the twitter oauth library from abraham williams.
+	http://github.com/abraham/twitteroauth
+
 
 DEVELOPMENT AND SUPPORT
 	find mindof development and support at:

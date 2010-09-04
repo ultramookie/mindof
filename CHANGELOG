@@ -1,6 +1,13 @@
 mindof
 ======
 
+version 0.8.0 (09/03/10)
+
+ENHANCMENTS
+	+ changed twitter auth to use oauth (using work by 
+          abraham williams 
+	  http://github.com/abraham/twitteroauth)
+
 version 0.7.3 (12/02/08)
 
 ENHANCEMENTS

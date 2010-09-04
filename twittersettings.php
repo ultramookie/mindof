@@ -6,6 +6,11 @@
 
 include_once("db.php");
 include_once("mindoflib.php");
+require_once('oauth_config.php');
+if (CONSUMER_KEY === '' || CONSUMER_SECRET === '') {
+  echo 'You need a consumer key and secret to setup Twitter access. Get one from <a href="https://twitter.com/apps">https://twitter.com/apps</a>. Then edit the oauth_config.php file.';
+  exit;
+}
 
 if ((stripslashes(!$_POST['checksubmit'])) && (checkCookie()) ) {
 	showTwitterform();
@@ -13,16 +18,13 @@ if ((stripslashes(!$_POST['checksubmit'])) && (checkCookie()) ) {
 
 	$username = getUserName();
 	$twitterCheck = stripslashes($_POST['twitterCheck']);
-	$twitterEmail = stripslashes($_POST['twitterEmail']);
-	$twitterPass1 = stripslashes($_POST['twitterPass1']);
-	$twitterPass2 = stripslashes($_POST['twitterPass2']);
         $user = $username;
         $pass  = stripslashes($_POST['pass']);
 
         $logincheck = checkLogin($user,$pass);
 
-	if ( ($logincheck == 0) && ((strcmp($twitterPass1,$twitterPass2)) == 0) ){
-  		changeTwitterSettings($twitterCheck,$twitterEmail,$twitterPass1);
+	if ($logincheck == 0) {
+  		updateTwitterSettings($twitterCheck);
 	} else {
 		echo "the username and/or password you entered was wrong.  please <a href='settings.php'>try again</a>.";
 	}
