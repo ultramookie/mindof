@@ -13,5 +13,5 @@
 	$dbpass = "password";
 
 	# Do not edit below
-	$version = "0.7.3";
+	$version = "0.8.0";
 ?>
