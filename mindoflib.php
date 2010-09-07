@@ -55,6 +55,7 @@ function updateTwitter($status) {
 	// check that everything went OK.
 	// twitter returns a long string that contains the update when things
 	// are ok.
+	$result = $connection->response;
 	if (eregi("Could not authenticate you",$result)) {
 		echo " <img src=\"action_stop.gif\" border=\"0\" /> twitter error: " . $result . "<br />";
 	} else {
