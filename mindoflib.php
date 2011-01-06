@@ -25,7 +25,8 @@ function showUpdateForm() {
         echo $_SERVER['PHP_SELF'];
         echo "\"";
         echo " method=\"post\">";
-	if (eregi("IEMobile|Windows\ CE|iPhone|Mobile",$ua)) {
+	#if (eregi("IEMobile|Windows\ CE|iPhone|Mobile",$ua)) {
+	if (eregi("IEMobile|Windows\ CE|iPhone",$ua)) {
 	        echo "<input type=\"text\" maxlength=\"140\" value=\"\" onkeyup=\"keyup(this)\" name=\"update\" />";
 	} else {
 		echo "<textarea cols=\"40\" rows=\"4\"  onkeyup=\"keyup(this)\" name=\"update\"></textarea>";

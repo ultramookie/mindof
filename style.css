@@ -2,12 +2,16 @@ body {
 	font-family: "Verdana", Sans;
 	color:#000000;
 	background:#FFFFFF; 
-	width: 550px;
+	min-width: 300px;
+	max-width: 575px;
+	width: auto;
 }
 
 .main {
 	margin-left: 10px;
-	width: 575px;
+	min-width: 310px;
+	max-width: 600px;
+	width: auto;
 }
 
 a {

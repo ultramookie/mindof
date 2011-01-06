@@ -12,6 +12,9 @@ include_once("mindoflib.php");
 <link rel="stylesheet" type="text/css" media="screen" href="<? echo "$siteurl"; ?>/style.css" />
 <link rel="alternate" type="application/rss+xml" title="<?php echo "$sitename"; ?> (RSS 2.0)" href="<?php echo "$siteurl"; ?>/rss.php"  />
 <meta name="generator" content="mindof <?php echo "$version"; ?>" />
+<meta name="keywords" content="microblog, steve kong, steven kong, steve mookie kong, mookie, ultramookie, unix, unix geek, linux, geek, programmer, sarcastic, funny, engineer, yahoo, sony, mookiekong" /> 
+<meta name="description" content="mookie's place microblog: bits of mookie's mind." /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
 
 <!-- Character Counting -->
 <script type="text/javascript" src="count.js"></script> 
