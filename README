@@ -38,6 +38,8 @@ CREDITS
 	mindof uses the twitter oauth library from abraham williams.
 	http://github.com/abraham/twitteroauth
 
+	special thanks to alice lee for her help on getting the mobile view
+        for webkit browsers correct.
 
 DEVELOPMENT AND SUPPORT
 	find mindof development and support at:
