@@ -19,7 +19,6 @@ $rssNum = getRssNum();
 $numOfEntries = getNumEntries();
 
 function showUpdateForm() {
-	$ua = $_SERVER['HTTP_USER_AGENT'];
 	echo "<div id=\"txtmsg\" class=\"count\">&nbsp;</div>";
         echo "<form action=\"";
         echo $_SERVER['PHP_SELF'];
