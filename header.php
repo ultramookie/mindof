@@ -7,8 +7,8 @@ include_once("mindoflib.php");
 <html>
 <head>
 <title><? echo "$sitename"; ?> </title>
-<link rel="stylesheet" type="text/css" href="yui/base-min.css" />
-<link rel="stylesheet" type="text/css"  href="yui/reset-fonts.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.5.0/build/cssreset/cssreset-min.css">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.5.0/build/cssfonts/cssfonts-min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="<? echo "$siteurl"; ?>/style.css" />
 <link rel="alternate" type="application/rss+xml" title="<?php echo "$sitename"; ?> (RSS 2.0)" href="<?php echo "$siteurl"; ?>/rss.php"  />
 <meta name="generator" content="mindof <?php echo "$version"; ?>" />

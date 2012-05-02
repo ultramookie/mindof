@@ -9,7 +9,12 @@
         if (!$_GET['pagenum']) {
                 $pagenum = 1;
         } else {
-                $pagenum = $_GET['pagenum'];
+                $temppagenum = $_GET['pagenum'];
+                if (preg_match('/^[0-9]+$/',$temppagenum)) {
+                        $pagenum = $temppagenum;
+                } else {
+                        $pagenum = 1;
+                }
         }
 
 	showEntriesArchive($numEntries,$pagenum);
