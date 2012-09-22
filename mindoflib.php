@@ -164,7 +164,7 @@ function makeFlickr($in_url) {
 }
 
 function makeLinks($text) {
-	$chunk = preg_split("/[\s,]+/", $text);
+	$chunk = preg_split("/[\s]+/", $text);
 	$size = count($chunk);
 
 	for($i=0;$i<$size;$i++) {
